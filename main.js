@@ -1,5 +1,5 @@
 //@ts-check
-const bencode = require("bencode")
+const decode = require("./decode")
 const fs = require("fs")
 
 /** 
@@ -20,7 +20,7 @@ const f = new Uint8Array(fs.readFileSync(filePath2))
  */
 const getFilePathsFromTorrent = (torrent) => {
     /** @type {{ files?: File[]; name: Uint8Array; }} */
-    const torrentInfo = bencode.decode(torrent).info
+    const torrentInfo = decode(torrent).info
     const { files, name } = torrentInfo
 
     if (!files) {  // 仅包含单个文件
