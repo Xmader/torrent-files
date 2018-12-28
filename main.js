@@ -18,17 +18,19 @@ const f = new Uint8Array(fs.readFileSync(filePath1))
  * 解析BT种子文件中包含的所有文件路径
  * @param { Uint8Array | Buffer } torrent BT种子文件
  */
-const getFilePathsFromTorrent = (torrent) => {
+var getFilePathsFromTorrent = function (torrent) {
     /** @type {{ files?: File[]; name: Uint8Array; }} */
-    const torrentInfo = decode(torrent).info
-    const { files, name } = torrentInfo
+    var torrentInfo = decode(torrent).info
+    var files = torrentInfo.files
+    var name = torrentInfo.name
 
     if (!files) {  // 仅包含单个文件
         return [decode.Uint8ArrayToString(name)]
-
     } else {
-        const paths = files.map((x) => {
-            return x.path.map((p) => decode.Uint8ArrayToString(p)).join("/")
+        var paths = files.map(function (x) {
+            return x.path.map(function (p) {
+                return decode.Uint8ArrayToString(p)
+            }).join("/")
         })
 
         return paths
@@ -39,4 +41,4 @@ console.log(
     getFilePathsFromTorrent(f)
 )
 
-// fs.writeFileSync("./1.json", JSON.stringify(getFilePathsFromTorrent(f), null, 4))
+fs.writeFileSync("./1.json", JSON.stringify(getFilePathsFromTorrent(f), null, 4))

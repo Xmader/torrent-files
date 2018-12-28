@@ -1,9 +1,9 @@
 //@ts-check
-const INTEGER_START = 0x69 // 'i'
-const STRING_DELIM = 0x3A // ':'
-const DICTIONARY_START = 0x64 // 'd'
-const LIST_START = 0x6C // 'l'
-const END_OF_TYPE = 0x65 // 'e'
+var INTEGER_START = 0x69 // 'i'
+var STRING_DELIM = 0x3A // ':'
+var DICTIONARY_START = 0x64 // 'd'
+var LIST_START = 0x6C // 'l'
+var END_OF_TYPE = 0x65 // 'e'
 
 /**
  * @param {Uint8Array} buffer
@@ -105,8 +105,8 @@ decode.dictionary = function () {
     var dict = {}
 
     while (decode.data[decode.position] !== END_OF_TYPE) {
-        const keyBuffer = decode.buffer()
-        const key = decode.Uint8ArrayToString(keyBuffer)
+        var keyBuffer = decode.buffer()
+        var key = decode.Uint8ArrayToString(keyBuffer)
         dict[key] = decode.next()
     }
 
