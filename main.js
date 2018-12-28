@@ -16,11 +16,11 @@ const f = new Uint8Array(fs.readFileSync(filePath2))
 
 /**
  * 解析BT种子文件中包含的所有文件路径
- * @param { Uint8Array | Buffer } f 
+ * @param { Uint8Array | Buffer } torrent BT种子文件
  */
-const getFilePathsFromTorrent = (f) => {
+const getFilePathsFromTorrent = (torrent) => {
     /** @type {{ files?: File[]; name: Uint8Array; }} */
-    const torrentInfo = bencode.decode(f).info
+    const torrentInfo = bencode.decode(torrent).info
     const { files, name } = torrentInfo
 
     if (!files) {  // 仅包含单个文件
@@ -34,3 +34,7 @@ const getFilePathsFromTorrent = (f) => {
         return paths
     }
 }
+
+console.log(
+    getFilePathsFromTorrent(f)
+)
