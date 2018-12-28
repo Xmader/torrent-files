@@ -1,0 +1,22 @@
+{
+  "name": "torrent-files",
+  "version": "0.1.0",
+  "description": "解析BT种子中包含的文件",
+  "main": "main.js",
+  "author": "Xmader",
+  "homepage": "https://github.com/Xmader/torrent-files#readme",
+  "bugs": {
+    "url": "https://github.com/Xmader/torrent-files/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Xmader/torrent-files.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bencode": "^2.0.0"
+  }
+}
