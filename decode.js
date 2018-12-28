@@ -49,26 +49,14 @@ function getIntFromBuffer(buffer, start, end) {
  * @param  {Uint8Array} data
  * @param  {Number=} start (optional)
  * @param  {Number=} end (optional)
- * @param  {String=} encoding (optional)
  * @return {Object|Array|Uint8Array|String|Number}
  */
-function decode(data, start, end, encoding) {
+function decode(data, start, end) {
     if (data == null || data.length === 0) {
         return null
     }
 
-    if (typeof start !== 'number' && encoding == null) {
-        encoding = start
-        start = undefined
-    }
-
-    if (typeof end !== 'number' && encoding == null) {
-        encoding = end
-        end = undefined
-    }
-
     decode.position = 0
-    decode.encoding = encoding || null
 
     decode.data = data.slice(start, end)
 
@@ -80,7 +68,6 @@ function decode(data, start, end, encoding) {
 decode.bytes = 0
 decode.position = 0
 decode.data = null
-decode.encoding = null
 
 decode.next = function () {
     switch (decode.data[decode.position]) {
@@ -156,9 +143,7 @@ decode.buffer = function () {
 
     decode.position = end
 
-    return decode.encoding
-        ? decode.data.toString(decode.encoding, sep, end)
-        : decode.data.slice(sep, end)
+    return decode.data.slice(sep, end)
 }
 
 module.exports = decode
