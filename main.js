@@ -14,18 +14,23 @@ const filePath2 = "【自压】【TSDM字幕组】[电波女与青春男][Denpa_
 
 const f = new Uint8Array(fs.readFileSync(filePath2))
 
-/** @type {{ files?: File[]; name: Uint8Array; }} */
-const torrentInfo = bencode.decode(f).info
-const { files, name } = torrentInfo
+/**
+ * 解析BT种子文件中包含的所有文件路径
+ * @param { Uint8Array | Buffer } f 
+ */
+const getFilePathsFromTorrent = (f) => {
+    /** @type {{ files?: File[]; name: Uint8Array; }} */
+    const torrentInfo = bencode.decode(f).info
+    const { files, name } = torrentInfo
 
-if (!files) {  // 仅包含单个文件
-    const paths = [name.toString()]
-    console.log(paths)
+    if (!files) {  // 仅包含单个文件
+        return [name.toString()]
 
-} else {
-    const paths = files.map((x) => {
-        return x.path.map((p) => p.toString()).join("/")
-    })
+    } else {
+        const paths = files.map((x) => {
+            return x.path.map((p) => p.toString()).join("/")
+        })
 
-    console.log(paths)
+        return paths
+    }
 }
