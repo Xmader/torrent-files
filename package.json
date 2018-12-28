@@ -1,7 +1,7 @@
 {
   "name": "torrent-files",
   "version": "0.1.0",
-  "description": "解析BT种子中包含的文件",
+  "description": "解析BT种子文件中包含的所有文件名和文件路径 (无依赖)",
   "main": "main.js",
   "author": "Xmader",
   "homepage": "https://github.com/Xmader/torrent-files#readme",
@@ -13,7 +13,7 @@
     "url": "git+ssh://git@github.com/Xmader/torrent-files.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "license": "MIT"
 }

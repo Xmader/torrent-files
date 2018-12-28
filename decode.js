@@ -1,4 +1,6 @@
 //@ts-check
+// 修改自https://github.com/themasch/node-bencode/blob/master/lib/decode.js
+
 var INTEGER_START = 0x69 // 'i'
 var STRING_DELIM = 0x3A // ':'
 var DICTIONARY_START = 0x64 // 'd'
