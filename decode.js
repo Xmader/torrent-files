@@ -6,10 +6,7 @@ const LIST_START = 0x6C // 'l'
 const END_OF_TYPE = 0x65 // 'e'
 
 /**
- * replaces parseInt(buffer.toString('ascii', start, end)).
- * For strings with less then ~30 charachters, this is actually a lot faster.
- *
- * @param {Buffer} buffer
+ * @param {Uint8Array} buffer
  * @param {Number} start
  * @param {Number} end
  * @return {Number} calculated number
@@ -49,11 +46,11 @@ function getIntFromBuffer(buffer, start, end) {
 /**
  * Decodes bencoded data.
  *
- * @param  {Buffer} data
+ * @param  {Uint8Array} data
  * @param  {Number=} start (optional)
  * @param  {Number=} end (optional)
  * @param  {String=} encoding (optional)
- * @return {Object|Array|Buffer|String|Number}
+ * @return {Object|Array|Uint8Array|String|Number}
  */
 function decode(data, start, end, encoding) {
     if (data == null || data.length === 0) {
@@ -73,9 +70,7 @@ function decode(data, start, end, encoding) {
     decode.position = 0
     decode.encoding = encoding || null
 
-    decode.data = !(Buffer.isBuffer(data))
-        ? new Buffer(data)
-        : data.slice(start, end)
+    decode.data = data.slice(start, end)
 
     decode.bytes = decode.data.length
 
